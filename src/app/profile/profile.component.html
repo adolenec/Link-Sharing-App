@@ -1,6 +1,6 @@
 <div class="flex gap-6 h-full">
-  <app-link-preview></app-link-preview>
-  <div class="flex-1 w-full">
+  <app-link-preview *ngIf="!isTablet()"></app-link-preview>
+  <div class="flex-1 mx-4 mb-4 sm:mb-0 sm:mx-0">
     <router-outlet></router-outlet>
   </div>
 </div>

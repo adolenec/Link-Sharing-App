@@ -1,12 +1,23 @@
 <header class="p-4 pl-6 flex items-center justify-between bg-white rounded-lg">
-  <img src="assets/images/Logo.png" />
-  <ul class="flex gap-4">
+  <div class="flex items-center gap-1">
+    <svg-icon src="assets/svg/logo.svg"></svg-icon>
+    <h1 class="md:text-[26px] lg:text-[40px] font-bold" *ngIf="!isMobile()">
+      Linkwise
+    </h1>
+  </div>
+  <ul class="flex md:gap-4">
     <li
       routerLink="links"
       routerLinkActive="active"
       class="text-gray-primary hover:text-green-primary cursor-pointer py-3 px-7 rounded-md flex items-center"
     >
-      <a>Links</a>
+      <a class="flex items-center gap-1"
+        ><svg-icon
+          src="assets/svg/link.svg"
+          [svgClass]="isMobile() ? 'w-4 h-4' : ''"
+        ></svg-icon
+        ><span *ngIf="!isMobile()">Links</span></a
+      >
     </li>
     <li
       routerLink="profile/details"
@@ -14,12 +25,21 @@
       [routerLinkActiveOptions]="{ exact: true }"
       class="text-gray-primary hover:text-green-primary cursor-pointer px-7 rounded-md py-3 flex items-center"
     >
-      <a>Profile Details</a>
+      <a class="flex items-center gap-1"
+        ><svg-icon
+          src="assets/svg/user-circle.svg"
+          [svgClass]="isMobile() ? 'w-4 h-4' : ''"
+        ></svg-icon
+        ><span *ngIf="!isMobile()">Profile Details</span></a
+      >
     </li>
   </ul>
-  <a
-    routerLink="profile/preview"
-    class="border-[1px] border-green-primary text-green-primary px-7 py-3 rounded-lg"
-    >Preview</a
-  >
+  <a routerLink="profile/preview" class="btn-secondary"
+    ><span *ngIf="!isMobile(); else previewTmpl">Preview</span>
+    <ng-template #previewTmpl>
+      <svg-icon
+        src="assets/svg/eye.svg"
+        [svgClass]="isMobile() ? 'w-4 h-4' : ''"
+      ></svg-icon> </ng-template
+  ></a>
 </header>

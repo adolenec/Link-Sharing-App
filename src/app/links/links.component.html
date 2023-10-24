@@ -1,4 +1,6 @@
 <div class="flex gap-6 h-full">
-  <app-link-preview></app-link-preview>
-  <app-customize-links class="flex-1"></app-customize-links>
+  <app-link-preview *ngIf="!isTablet()"></app-link-preview>
+  <app-customize-links
+    class="flex-1 mx-4 mb-4 sm:mb-0 sm:mx-0"
+  ></app-customize-links>
 </div>

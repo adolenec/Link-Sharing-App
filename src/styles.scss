@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-gray-ghost;
+}
+
+.active {
+  @apply bg-green-ghost text-green-primary;
+}

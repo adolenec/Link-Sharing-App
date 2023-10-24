@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-preview',
+  selector: 'app-customize-links',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './preview.component.html',
+  templateUrl: './customize-links.component.html',
 })
-export class PreviewComponent {}
+export class CustomizeLinksComponent {}

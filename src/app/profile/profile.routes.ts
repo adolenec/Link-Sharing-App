@@ -1,9 +1,20 @@
 import { Routes } from '@angular/router';
-import { DetailsComponent } from './details/details.component';
-import { PreviewComponent } from './preview/preview.component';
+import { ProfileDetailsComponent } from './profile-details/profile-details.component';
+import { ProfilePreviewComponent } from './profile-preview/profile-preview.component';
+import { ProfileComponent } from './profile.component';
 
 export const PROFILE_ROUTES: Routes = [
-  { path: '', redirectTo: 'details', pathMatch: 'full' },
-  { path: 'details', component: DetailsComponent },
-  { path: 'preview', component: PreviewComponent },
+  {
+    path: '',
+    component: ProfileComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'all',
+      },
+      { path: 'details', component: ProfileDetailsComponent },
+    ],
+  },
+  { path: 'preview', component: ProfilePreviewComponent },
 ];

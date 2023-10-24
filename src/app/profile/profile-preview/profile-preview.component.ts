@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-details',
+  selector: 'app-profile-preview',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './details.component.html',
+  templateUrl: './profile-preview.component.html',
 })
-export class DetailsComponent {}
+export class ProfilePreviewComponent {}

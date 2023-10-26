@@ -1,0 +1,55 @@
+<form [formGroup]="linkForm">
+  <div formArrayName="links" class="flex flex-col gap-6">
+    <div
+      *ngFor="let link of links.controls; let i = index"
+      [formGroupName]="i"
+      class="bg-gray-ghost flex flex-col gap-3 p-5 rounded-lg"
+    >
+      <div class="flex items-center justify-between">
+        <div>Link #{{ i + 1 }}</div>
+        <div class="cursor-pointer">Remove</div>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-xs pb-1">Platform</label>
+        <p-dropdown
+          formControlName="platformId"
+          [options]="platforms"
+          optionValue="id"
+          optionLabel="name"
+          placeholder="Select a platform"
+        >
+          <ng-template let-platform pTemplate="item">
+            <div class="flex items-center gap-3">
+              <svg-icon [src]="platform.src"></svg-icon>
+              <div>{{ platform.name }}</div>
+            </div>
+          </ng-template></p-dropdown
+        >
+        <span
+          *ngIf="
+            link.get('platformId')?.hasError('required') &&
+            link.get('platformId')?.dirty
+          "
+          class="text-xs text-red"
+        >
+          Can't be empty
+        </span>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-xs pb-1">Link</label>
+        <span class="p-input-icon-left">
+          <i> <svg-icon src="assets/svg/link.svg"></svg-icon></i>
+          <input type="text" pInputText formControlName="url" />
+        </span>
+        <span
+          *ngIf="
+            link.get('url')?.hasError('required') && link.get('url')?.dirty
+          "
+          class="text-xs text-red"
+        >
+          Can't be empty
+        </span>
+      </div>
+    </div>
+  </div>
+</form>

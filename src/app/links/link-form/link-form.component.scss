@@ -1,0 +1,52 @@
+:host::ng-deep {
+  .p-dropdown {
+    @apply flex items-center justify-between w-full bg-transparent rounded-md border-solid  border text-gray-primary;
+
+    &:focus,
+    &:hover {
+      @apply outline-none;
+    }
+
+    .p-dropdown-label.p-placeholder {
+      @apply text-gray-primary text-xs flex items-center;
+    }
+
+    .p-dropdown-trigger {
+      @apply text-gray-primary;
+    }
+  }
+
+  span {
+    @apply flex items-center;
+  }
+
+  .p-dropdown:not(.p-disabled):hover {
+    @apply border-green-primary;
+  }
+
+  .p-dropdown:focus,
+  .p-dropdown:hover {
+    @apply outline-none shadow-sm;
+  }
+
+  .p-dropdown-panel .p-dropdown-items {
+    @apply bg-white text-gray-ghost;
+
+    .p-dropdown-item.p-highlight {
+      @apply bg-white text-green-primary;
+    }
+  }
+
+  .p-dropdown-panel .p-dropdown-header {
+    @apply bg-gray-primary;
+  }
+
+  .p-inputtext {
+    @apply text-gray-primary text-xs w-full bg-transparent h-12;
+
+    &:focus,
+    &:hover {
+      @apply outline-none border-green-primary;
+    }
+  }
+}

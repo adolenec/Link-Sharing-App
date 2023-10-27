@@ -1,0 +1,9 @@
+:host::ng-deep {
+  .p-toast-message {
+    @apply p-0 bg-black-primary text-white rounded-lg;
+  }
+
+  .p-toast-detail {
+    @apply text-sm;
+  }
+}

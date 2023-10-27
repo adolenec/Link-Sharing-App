@@ -14,6 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { validateForm } from 'src/app/shared/helpers/validate-form';
 import { Link } from '../models/link.model';
 import { LinksService } from '../links.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-link-form',
@@ -31,9 +32,11 @@ import { LinksService } from '../links.service';
 export class LinkFormComponent {
   private fb = inject(FormBuilder);
   private linksService = inject(LinksService);
+  private messageService = inject(MessageService);
+
+  @Input({ required: true }) userLinks: Link[] = [];
   linkForm!: FormGroup;
   platforms = PLATFORMS;
-  @Input({ required: true }) userLinks: Link[] = [];
 
   get links() {
     return this.linkForm.get('links') as FormArray;
@@ -42,6 +45,10 @@ export class LinkFormComponent {
   ngOnInit() {
     this.linkForm = this.fb.group({
       links: this.fb.array(this.userLinks.map((d: any) => this.buildLink(d))),
+    });
+    this.linksService.formLinks.set(this.links.value);
+    this.links.valueChanges.subscribe((res) => {
+      this.linksService.formLinks.set(res);
     });
   }
 
@@ -58,8 +65,14 @@ export class LinkFormComponent {
 
   submit() {
     if (!validateForm(this.links)) return;
-    this.linksService
-      .updateLinks(this.links.value)
-      .subscribe((res) => console.log(res));
+    this.linksService.updateLinks(this.links.value).subscribe((_) => {
+      this.messageService.add({
+        detail: 'Your changes have been successfully saved!',
+      });
+    });
+  }
+
+  deleteLink(index: number) {
+    this.links.removeAt(index);
   }
 }

@@ -1,3 +1,10 @@
-<div class="bg-white h-full w-[560px] overflow-scroll rounded-lg p-6">
-  <p>links-preview works!</p>
+<div
+  class="bg-white h-full w-[560px] rounded-lg p-6 flex items-center mb-10 justify-center bg-[url('assets/svg/mobile.svg')] bg-no-repeat bg-center bg-[length:250px] relative"
+>
+  <div
+    class="flex p-2 translate-y-1/4 flex-col fixed max-h-[250px] gap-2 overflow-y-scroll"
+  >
+    <svg-icon *ngFor="let link of previewLinks()" [src]="link.previewSrc">
+    </svg-icon>
+  </div>
 </div>

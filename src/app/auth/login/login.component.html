@@ -1,1 +1,49 @@
-<p>login works!</p>
+<div
+  class="flex flex-col gap-16 md:gap-12 justify-center items-center h-full bg-white md:bg-transparent p-8 md:p-0"
+>
+  <div class="flex items-center self-start gap-1 md:self-center">
+    <svg-icon src="assets/svg/logo.svg"></svg-icon>
+    <h1 class="text-[26px] lg:text-[40px] font-bold">Linkwise</h1>
+  </div>
+  <div
+    class="flex flex-col gap-12 md:p-10 rounded-lg w-full h-full md:w-[476px] md:h-auto bg-white"
+  >
+    <div class="flex flex-col gap-6">
+      <div>
+        <h1 class="heading">Login</h1>
+        <p class="text-gray-primary py-2">
+          Add your details below to get back into the app
+        </p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-xs text-gray-primary pb-1">Email</label>
+        <span class="p-input-icon-left">
+          <i> <svg-icon src="assets/svg/link.svg"></svg-icon></i>
+          <input type="text" pInputText formControlName="url" class="w-full" />
+        </span>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-xs text-gray-primary pb-1">Password</label>
+        <span class="p-input-icon-left">
+          <i> <svg-icon src="assets/svg/lock-key.svg"></svg-icon></i>
+          <input
+            type="text"
+            pInputText
+            type="password"
+            formControlName="url"
+            class="w-full"
+          />
+        </span>
+      </div>
+      <div class="text-primary text-gray-primary text-center">
+        Don't have an account?
+        <a
+          routerLink="/auth/register"
+          class="text-green-primary hover:underline cursor-pointer"
+          >Register</a
+        >
+      </div>
+      <button class="btn-primary">Login</button>
+    </div>
+  </div>
+</div>

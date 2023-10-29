@@ -15,26 +15,54 @@
           Add your details below to get back into the app
         </p>
       </div>
-      <div class="flex flex-col">
-        <label class="text-xs text-gray-primary pb-1">Email</label>
-        <span class="p-input-icon-left">
-          <i> <svg-icon src="assets/svg/link.svg"></svg-icon></i>
-          <input type="text" pInputText formControlName="url" class="w-full" />
-        </span>
-      </div>
-      <div class="flex flex-col">
-        <label class="text-xs text-gray-primary pb-1">Password</label>
-        <span class="p-input-icon-left">
-          <i> <svg-icon src="assets/svg/lock-key.svg"></svg-icon></i>
-          <input
-            type="text"
-            pInputText
-            type="password"
-            formControlName="url"
-            class="w-full"
-          />
-        </span>
-      </div>
+      <form
+        class="flex flex-col gap-6"
+        [formGroup]="loginForm"
+        (ngSubmit)="onLogin()"
+      >
+        <div class="flex flex-col">
+          <label class="text-xs text-gray-primary pb-1">Email</label>
+          <span class="p-input-icon-left">
+            <i> <svg-icon src="assets/svg/link.svg"></svg-icon></i>
+            <input
+              type="text"
+              pInputText
+              formControlName="email"
+              class="w-full"
+            />
+          </span>
+          <span
+            *ngIf="
+              loginForm.get('email')?.dirty &&
+              loginForm.get('email')?.touched &&
+              loginForm.get('email')?.errors
+            "
+            class="text-xs text-red"
+          >
+            Email is required and must be valid
+          </span>
+        </div>
+        <div class="flex flex-col">
+          <label class="text-xs text-gray-primary pb-1">Password</label>
+          <span class="p-input-icon-left">
+            <i> <svg-icon src="assets/svg/lock-key.svg"></svg-icon></i>
+            <input
+              type="text"
+              pInputText
+              type="password"
+              formControlName="password"
+              class="w-full"
+            />
+          </span>
+        </div>
+        <div
+          class="text-sm text-red"
+          *ngIf="errorMessage$ | async as errorMessage"
+        >
+          {{ errorMessage }}
+        </div>
+        <button type="submit" class="btn-primary w-full">Login</button>
+      </form>
       <div class="text-primary text-gray-primary text-center">
         Don't have an account?
         <a
@@ -43,7 +71,6 @@
           >Register</a
         >
       </div>
-      <button class="btn-primary">Login</button>
     </div>
   </div>
 </div>

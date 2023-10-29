@@ -4,7 +4,9 @@
   <div
     class="flex p-2 translate-y-1/4 flex-col fixed max-h-[250px] gap-2 overflow-y-scroll"
   >
-    <svg-icon *ngFor="let link of previewLinks()" [src]="link.previewSrc">
+  <div *ngFor="let link of previewLinks()">
+    <svg-icon [src]="link.previewSrc">
     </svg-icon>
+  </div>
   </div>
 </div>

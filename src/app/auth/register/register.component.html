@@ -15,44 +15,92 @@
           Let's get you started sharing your links!
         </p>
       </div>
-      <div class="flex flex-col">
-        <label class="text-xs text-gray-primary pb-1">Email</label>
-        <span class="p-input-icon-left">
-          <i> <svg-icon src="assets/svg/link.svg"></svg-icon></i>
-          <input type="text" pInputText formControlName="url" class="w-full" />
-        </span>
-      </div>
-      <div class="flex flex-col">
-        <label class="text-xs text-gray-primary pb-1">Create password</label>
-        <span class="p-input-icon-left">
-          <i> <svg-icon src="assets/svg/lock-key.svg"></svg-icon></i>
-          <input
-            type="text"
-            pInputText
-            type="password"
-            formControlName="url"
-            class="w-full"
-          />
-        </span>
-      </div>
-      <div class="flex flex-col">
-        <label class="text-xs text-gray-primary pb-1">Confirm password</label>
-        <span class="p-input-icon-left">
-          <i> <svg-icon src="assets/svg/lock-key.svg"></svg-icon></i>
-          <input
-            type="text"
-            pInputText
-            type="password"
-            formControlName="url"
-            class="w-full"
-          />
-        </span>
-      </div>
-      <span class="text-gray-primary text-xs">Password must contain at least 8 characters</span>
-      <button class="btn-primary">Create new account</button>
-      <div class="text-primary text-gray-primary text-center"
-        >Already have an account?
-        <a routerLink="/auth/login" class="text-green-primary hover:underline cursor-pointer"
+      <form
+        class="flex flex-col gap-6"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSignup()"
+      >
+        <div class="flex flex-col">
+          <label class="text-xs text-gray-primary pb-1">Email</label>
+          <span class="p-input-icon-left">
+            <i> <svg-icon src="assets/svg/link.svg"></svg-icon></i>
+            <input
+              type="text"
+              pInputText
+              formControlName="email"
+              class="w-full"
+            />
+          </span>
+          <span
+            *ngIf="
+              registerForm.get('email')?.dirty &&
+              registerForm.get('email')?.touched &&
+              registerForm.get('email')?.errors
+            "
+            class="text-xs text-red"
+          >
+            Email is required and must be valid
+          </span>
+        </div>
+        <div formGroupName="passwordGroup" class="flex flex-col gap-6">
+          <div class="flex flex-col">
+            <label class="text-xs text-gray-primary pb-1"
+              >Create password</label
+            >
+            <span class="p-input-icon-left">
+              <i> <svg-icon src="assets/svg/lock-key.svg"></svg-icon></i>
+              <input
+                type="text"
+                pInputText
+                type="password"
+                formControlName="password"
+                class="w-full"
+              />
+            </span>
+            <span class="text-red text-xs">
+              {{ passwordMsg }}
+            </span>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-xs text-gray-primary pb-1"
+              >Confirm password</label
+            >
+            <span class="p-input-icon-left">
+              <i> <svg-icon src="assets/svg/lock-key.svg"></svg-icon></i>
+              <input
+                type="text"
+                pInputText
+                type="password"
+                formControlName="confirmPassword"
+                class="w-full"
+              />
+            </span>
+            <span
+              *ngIf="registerForm.get('passwordGroup')?.errors?.['passwordsNotEqual'] &&
+                     registerForm.get('passwordGroup.confirmPassword')?.dirty &&
+                     registerForm.get('passwordGroup.confirmPassword')?.touched"
+              class="text-xs text-red"
+            >
+              Passwords don't match
+            </span>
+          </div>
+        </div>
+        <span class="text-gray-primary text-xs"
+          >Password must contain at least 8 characters</span
+        >
+        <div
+          class="text-sm text-red"
+          *ngIf="errorMessage$ | async as errorMessage"
+        >
+          {{ errorMessage }}
+        </div>
+        <button class="btn-primary">Create new account</button>
+      </form>
+      <div class="text-primary text-gray-primary text-center">
+        Already have an account?
+        <a
+          routerLink="/auth/login"
+          class="text-green-primary hover:underline cursor-pointer"
           >Login</a
         >
       </div>

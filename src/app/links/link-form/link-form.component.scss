@@ -44,6 +44,9 @@
   .p-inputtext {
     @apply text-gray-primary text-xs w-full bg-transparent h-12;
 
+    &:enabled {
+      @apply outline-none shadow-none
+    }
     &:focus,
     &:hover {
       @apply outline-none border-green-primary;

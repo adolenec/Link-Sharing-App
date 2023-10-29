@@ -34,16 +34,3 @@ export function validateForm(control: AbstractControl): boolean {
   return true;
 }
 
-export function validateForm2(fg: FormArray | FormGroup) {
-  if (!fg.valid) {
-    Object.values(fg.controls).forEach((control) => {
-      if (control.invalid) {
-        control.markAsDirty();
-        control.updateValueAndValidity({ onlySelf: true });
-      }
-    });
-    return false;
-  }
-  return true;
-}
-

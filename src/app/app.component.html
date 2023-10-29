@@ -1,7 +1,15 @@
-<div class="p-0 sm:p-4 md:p-6 flex flex-col h-screen gap-6">
-  <!-- <app-header></app-header> -->
+<div class="p-0 sm:p-4 md:p-6 flex flex-col h-screen gap-6 relative">
+  <app-header *ngIf="user$ | async"></app-header>
   <main class="flex-1 overflow-auto">
     <router-outlet></router-outlet>
   </main>
+  <!-- UNCOMMENT TO ADD LOGOUT FUNCITONALITY -->
+  <!-- <div
+    class="rounded-full cursor-pointer w-12 h-12 md:w-16 md:h-16 z-10 bottom-4 md:bottom-8 border-2 border-gray-primarycursor-pointer flex items-center justify-center left-4 md:left-8 absolute"
+    (click)="onLogout()"
+    *ngIf="user$ | async"
+  >
+    <img src="assets/images/logout.png" class="w-8 md:w-12 h-8 md:h-12" />
+  </div> -->
 </div>
 <p-toast position="bottom-center"> </p-toast>
